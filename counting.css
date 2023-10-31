@@ -1,0 +1,79 @@
+h1 {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.counting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: clamp(100px, 50%, 250px);
+  margin-top: 10px;
+}
+
+.check-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.check-box label {
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+  outline: none;
+}
+
+hr {
+  width: clamp(100px, 50%, 250px);
+  height: 1px;
+  border-width: 0;
+  background-color: lightblue;
+  margin: 0;
+}
+
+.numbers {
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+  gap: 20px;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  gap: 5px;
+  list-style: none;
+}
+
+.redirect {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  margin: 10px;
+}
