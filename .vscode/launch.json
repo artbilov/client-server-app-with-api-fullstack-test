@@ -4,12 +4,14 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-    
     {
-      "type": "chrome",
+      "type": "node",
       "request": "launch",
-      "name": "Open about-myself.html",
-      "file": "c:\\Users\\abelov\\CharterCoding\\client-server-app-with-api\\about-myself.html"
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}\\private\\index.js"
     }
   ]
 }
