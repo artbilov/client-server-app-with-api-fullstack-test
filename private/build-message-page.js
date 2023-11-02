@@ -1,6 +1,10 @@
-module.exports = { buildMessagePage }
+
+const fs = require('fs')
+const messages = require('./data/messages-depot.json')
+const { messagesRender } = require('./messages-render.js')
 
 function buildMessagePage() {
+  let messagesDom = messagesRender(messages)
   const strPage = `
   <!DOCTYPE html>
 <html lang="en">
@@ -8,32 +12,32 @@ function buildMessagePage() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="messages.css">
+  <style>${fs.readFileSync('./public/messages.css', 'utf-8')}</style>
+  
   <title></title>
 </head>
 
 <body>
   <h1>Message's board</h1>
   <main class="main">
-    <div class="message">
-      <p class="author">Vasya Pupkin</p>
-      <hr>
-      <p class="text">bla bla bla bla bla bla bla bla bla</p>
-    </div>
     <form action="javascript:" class="add-message">
-      <label>Author is : <input type="text" class="add-author"></label>
-      <label>Write your message : <textarea type="text" class="add-text"></textarea></label>
+      <label><span>Author is : </span><input type="text" class="add-author"></label>
+      <label><span>Write your message : </span><textarea type="text" class="add-text"></textarea></label>
       <button class="send">Submit</button>
     </form>
+    ${messagesDom}
     <div class="redirect">
       <a class="messages" href="./about-myself.html">About myself</a>
       <a class="counting" href="./counting.html">Counting</a>
     </div>
   </main>
-
+  <script>${fs.readFileSync('./public/messages.js', 'utf-8')}</script>
 </body>
 
 </html>
   `
   return strPage
 }
+
+
+module.exports = { buildMessagePage }

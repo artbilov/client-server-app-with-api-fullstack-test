@@ -39,6 +39,7 @@ input {
   box-sizing: border-box;
   padding: 5px;
   outline: none;
+  text-align: center;
 }
 
 hr {

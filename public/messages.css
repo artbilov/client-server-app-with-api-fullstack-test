@@ -41,7 +41,12 @@ hr {
 
 label {
   padding: 0;
+}
 
+label>span, 
+.text,
+.author {
+  padding-left: 10px;
 }
 
 .add-author {

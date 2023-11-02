@@ -1,8 +1,10 @@
 const { createServer } = require('http')
 const fs = require('fs')
+const { buildMessagePage } = require('./build-message-page.js')
+const { mimeTypes } = require('./mimeTypes.js')
 const port = 1234
 const server = createServer()
-const messages  = require('./data/messages-depot.js')
+const messages = require('./data/messages-depot.json')
 
 server.listen(port, () => {
   console.log('Server started at http://localhost:' + port)
@@ -11,9 +13,11 @@ server.listen(port, () => {
 server.addListener('request', handleRequest)
 
 function handleRequest(request, response) {
+
   const { url, method } = request
   console.log(method, url)
   const ext = url.match(/(?<=\.)[^./]+$/)?.[0] || 'html'
+
 
   if (url === '/about-myself.html' || url === '/') {
     response.setHeader('Content-Type', mimeTypes[ext])
@@ -27,63 +31,33 @@ function handleRequest(request, response) {
   } else if (url === '/about-myself.css') {
     response.setHeader('Content-Type', mimeTypes[ext])
     response.end(fs.readFileSync('public/about-myself.css'))
+    // 
   } else if (url === '/counting.html') {
-    // semi Render system
+    // CSR system
     response.setHeader('Content-Type', mimeTypes[ext])
     response.end(fs.readFileSync('public/counting.html'))
   } else if (url === '/counting.css') {
     response.setHeader('Content-Type', mimeTypes[ext])
     response.end(fs.readFileSync('public/counting.css'))
+
   } else if (url === '/messages.html') {
     // SSR
-    // response.setHeader('Content-Type', mimeTypes[ext])
-    response.end(buildMessagePage())
+    if (method === 'GET') {
+      response.setHeader('Content-Type', mimeTypes[ext])
+      response.end(buildMessagePage())
+    } else if (method === 'POST') {
+      const chunks = []
+      request.addListener('data', (chunk) => chunks.push(chunk))
+      request.addListener('end', () => {
+        const body = Buffer.concat(chunks).toString()
+        const message = JSON.parse(body)
+        console.log(message)
+        messages.unshift(message)
+        fs.writeFileSync('./private/data/messages-depot.json', JSON.stringify(messages))
+        response.end('ok')
+      })
+    }
   }
 }
 
-const mimeTypes = {
-  'html': 'text/html',
-  'css': 'text/css',
-  'jpeg': 'image/jpeg',
-  'jpg': 'image/jpeg',
-  'png': 'image/png',
-  'ico': 'image/x-icon',
-  'json': 'application/json',
-}
 
-// const { buildMessagePage } = require('./build-message-page.js')
-
-// <link rel="stylesheet" href="messages.css">
-function buildMessagePage() {
-  const strPage = `
-  <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>${fs.readFileSync('./public/messages.css', 'utf-8').toString()}</style>
-  <title></title>
-</head>
-
-<body>
-  <h1>Message's board</h1>
-  <main class="main">
-    ${messageRender(messages)}
-    <form action="javascript:" class="add-message">
-      <label>Author is : <input type="text" class="add-author"></label>
-      <label>Write your message : <textarea type="text" class="add-text"></textarea></label>
-      <button class="send">Submit</button>
-    </form>
-    <div class="redirect">
-      <a class="messages" href="./about-myself.html">About myself</a>
-      <a class="counting" href="./counting.html">Counting</a>
-    </div>
-  </main>
-
-</body>
-
-</html>
-  `
-  return strPage
-}
