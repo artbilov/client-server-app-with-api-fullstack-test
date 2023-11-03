@@ -4,7 +4,7 @@ const { buildMessagePage } = require('./build-message-page.js')
 const { mimeTypes } = require('./mimeTypes.js')
 const port = 1234
 const server = createServer()
-const messages = require('./data/messages-depot.json')
+const { handleAddMessage } = require('./add-message.js')
 
 server.listen(port, () => {
   console.log('Server started at http://localhost:' + port)
@@ -45,22 +45,14 @@ function handleRequest(request, response) {
       response.setHeader('Content-Type', mimeTypes[ext])
       response.end(buildMessagePage())
     } else if (method === 'POST') {
-      const chunks = []
-      request.addListener('data', (chunk) => chunks.push(chunk))
-      request.addListener('end', () => {
-        const body = Buffer.concat(chunks).toString()
-        const message = JSON.parse(body)
-        console.log(message)
-        messages.unshift(message)
-        fs.writeFileSync('./private/data/messages-depot.json', JSON.stringify(messages))
-        response.end('ok')
-      })
-    } 
+      handleAddMessage(request, response)
+    }
   } else {
     response.statusCode = 404
     response.setHeader('Content-Type', mimeTypes['html'])
     response.end(fs.readFileSync('./public/not-found.html'))
   }
 }
+
 
 

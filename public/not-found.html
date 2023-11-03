@@ -8,6 +8,7 @@
     body {
       width: 100vw;
       height: 100vh;
+      margin: 0;
     }
 
     main {
@@ -19,7 +20,6 @@
       width: 500px;
       height: 300px;
       border-radius: 50%;
-      margin: 0;
     }
 
     span {
@@ -27,9 +27,11 @@
       text-align: center;
       margin: auto;
       width: 100%;
+      user-select: none;
     }
   </style>
   <title>Document</title>
+  <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+A8AAAoIAAyy+WZsAAAAASUVORK5CYII="  type="image/x-icon">
 </head>
 
 <body>
@@ -40,9 +42,8 @@
     const [body] = document.getElementsByTagName('body')
     const [main] = document.getElementsByTagName('main')
     const [span] = document.getElementsByTagName('span')
+    
     body.onclick = (e) => setColor()
-    span.onclick = (e) => setColor()
-    main.onclick = (e) => setColor()
 
     function setColor() {
       main.style.left = Math.ceil(Math.random() * 10) * 120 + 250 + 'px'
