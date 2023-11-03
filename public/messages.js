@@ -1,4 +1,4 @@
-const btn = document.getElementsByClassName('send')[0];
+const btn = document.getElementsByClassName('btn-send')[0];
 
 btn.addEventListener('click', async () => {
   const author = document.getElementsByClassName('add-author')[0].value

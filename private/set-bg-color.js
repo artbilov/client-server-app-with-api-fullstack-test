@@ -1,5 +1,16 @@
-module.exports = {setBgColor}
+module.exports = { setBgColor }
 
 function setBgColor() {
-  return ['pink', 'lightblue', 'lightseagreen', 'lightcyan', 'lightsalmon', 'lightcoral', 'lightgray', 'plum', 'palevioletred', 'violet'][Math.floor(Math.random() * 10)]
+  return [
+    "aliceblue",
+    "lavender",
+    "mintcream",
+    "lightcyan",
+    "powderblue",
+    "cornsilk",
+    "honeydew",
+    "lightyellow",
+    "lavenderblush",
+    "floralwhite"
+  ][Math.floor(Math.random() * 10)]
 }

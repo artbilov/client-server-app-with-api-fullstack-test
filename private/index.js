@@ -47,6 +47,16 @@ function handleRequest(request, response) {
     } else if (method === 'POST') {
       handleAddMessage(request, response)
     }
+  } else if (url.startsWith('/api/')) {
+    const endpoint = url.split('/api/')[1]
+    if (endpoint === 'get-numbers') {
+      response.end(fs.readFileSync('./private/data/numbers-depot.json'))
+    } else if (endpoint === 'average') {
+      response.end(calculateAverageValue(request, response))
+    } else {
+      response.statusCode = 404
+      response.setHeader('Content-Type', mimeTypes['html'])
+      response.end(fs.readFileSync('./public/not-found.html'))}
   } else {
     response.statusCode = 404
     response.setHeader('Content-Type', mimeTypes['html'])

@@ -23,7 +23,7 @@ function buildMessagePage() {
     <form action="javascript:" class="add-message">
       <label><span>Author is : </span><input type="text" class="add-author"></label>
       <label><span>Write your message : </span><textarea type="text" class="add-text"></textarea></label>
-      <button class="send">Submit</button>
+      <button class="btn-send">Submit</button>
     </form>
     ${messagesDom}
     <div class="redirect">

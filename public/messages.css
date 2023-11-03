@@ -46,7 +46,7 @@ label {
 label>span,
 .text,
 .author {
-  padding-left: 10px;
+  padding: 0 10px;
 }
 
 .add-author {
@@ -70,12 +70,18 @@ label>span,
   box-sizing: border-box;
 }
 
-.send {
+.btn-send {
   width: clamp(100px, 20%, 200px);
   background: none;
   border: 1px solid lightblue;
   border-radius: 5px;
   padding: 5px;
+}
+
+.author {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .redirect {
