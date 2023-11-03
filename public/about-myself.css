@@ -28,5 +28,11 @@ h1 {
 .redirect {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   gap: 20px;
+}
+
+a {
+  margin: 5px;
+  text-align: center;
 }

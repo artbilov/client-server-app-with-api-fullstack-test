@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    main {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-250px) translateY(-150px);
+      width: 500px;
+      height: 300px;
+      border-radius: 50%;
+      margin: 0;
+    }
+
+    span {
+      font-size: 50px;
+      text-align: center;
+      margin: auto;
+      width: 100%;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <main class="main">
+    <span>404 do Not click ME!</span>
+  </main>
+  <script>
+    const [body] = document.getElementsByTagName('body')
+    const [main] = document.getElementsByTagName('main')
+    const [span] = document.getElementsByTagName('span')
+    body.onclick = (e) => setColor()
+    span.onclick = (e) => setColor()
+    main.onclick = (e) => setColor()
+
+    function setColor() {
+      main.style.left = Math.ceil(Math.random() * 10) * 120 + 250 + 'px'
+      main.style.top = Math.ceil(Math.random() * 10) * 60 + 150 + 'px'
+      main.style.background = ['pink', 'lightblue', 'lightseagreen', 'lightcyan', 'lightsalmon', 'lightcoral', 'lightgray', 'plum', 'palevioletred', 'violet'][Math.floor(Math.random() * 10)]
+      span.innerText = `${[
+        "404 नहीं मिला", // Индийский
+        "404 introuvable", // Французский
+        "404 no encontrado", // Испанский
+        "404 nicht gefunden", // Немецкий
+        "404 non trovato", // Итальянский
+        "404 ܠܐ ܐܬܐ", // Арамейский
+        "404 не знайдено", // Украинский
+        "404 hakupatikani", // Кенийский
+        "404 پیدا نشد", // Фарси
+        "404 찾을 수 없음" // Корейский
+      ][Math.floor(Math.random() * 10)]}`
+    }
+
+  </script>
+</body>
+
+</html>

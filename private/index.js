@@ -18,7 +18,6 @@ function handleRequest(request, response) {
   console.log(method, url)
   const ext = url.match(/(?<=\.)[^./]+$/)?.[0] || 'html'
 
-
   if (url === '/about-myself.html' || url === '/') {
     response.setHeader('Content-Type', mimeTypes[ext])
     response.end(fs.readFileSync('public/about-myself.html'))
@@ -56,7 +55,11 @@ function handleRequest(request, response) {
         fs.writeFileSync('./private/data/messages-depot.json', JSON.stringify(messages))
         response.end('ok')
       })
-    }
+    } 
+  } else {
+    response.statusCode = 404
+    response.setHeader('Content-Type', mimeTypes['html'])
+    response.end(fs.readFileSync('./public/not-found.html'))
   }
 }
 

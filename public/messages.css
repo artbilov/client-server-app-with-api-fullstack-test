@@ -43,7 +43,7 @@ label {
   padding: 0;
 }
 
-label>span, 
+label>span,
 .text,
 .author {
   padding-left: 10px;
@@ -83,4 +83,9 @@ label>span,
   flex-direction: row;
   gap: 20px;
   justify-content: center;
+}
+
+a {
+  margin: 5px;
+  text-align: center;
 }

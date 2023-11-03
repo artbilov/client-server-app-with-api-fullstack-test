@@ -78,3 +78,8 @@ ul {
   justify-content: center;
   margin: 10px;
 }
+
+a {
+  margin: 5px;
+  text-align: center;
+}

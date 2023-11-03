@@ -30,6 +30,7 @@ function buildMessagePage() {
       <a class="messages" href="./about-myself.html">About myself</a>
       <a class="counting" href="./counting.html">Counting</a>
     </div>
+    <a href="https://github.com/artbilov/client-server-app-with-api-fullstack-test" class="github">GitHub repo</a>
   </main>
   <script>${fs.readFileSync('./public/messages.js', 'utf-8')}</script>
 </body>
