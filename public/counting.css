@@ -42,6 +42,15 @@ input {
   text-align: center;
 }
 
+.btn-calculate {
+  background: none;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 15px;
+  padding: 5px;
+}
+
 hr {
   width: clamp(100px, 50%, 250px);
   height: 1px;

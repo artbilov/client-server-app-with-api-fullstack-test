@@ -6,5 +6,6 @@ const mimeTypes = {
   'png': 'image/png',
   'ico': 'image/x-icon',
   'json': 'application/json',
+  'js': 'application/javascript',
 };
 exports.mimeTypes = mimeTypes;

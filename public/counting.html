@@ -14,11 +14,12 @@
   <main class="main">
 
     <form action="" class="counting">
-      <input type="text" id="input-number" class="input-number" name="input-number">
+      <input type="text" placeholder="Enter a number" pattern="^(0|[1-9]\d*)(\.\d{1,2})?$" inputmode="numeric" id="input-number" class="input-number" name="input-number"  required>
       <div class="check-box">
         <label>Negative <input type="checkbox" class="check-minus"></label>
         <label>Fractional <input type="checkbox" class="check-fraction"></label>
       </div>
+      <button class="btn-calculate">Calculate</button>
     </form>
     <hr>
     <div class="numbers">
@@ -32,7 +33,7 @@
         </ul>
       </div>
       <div class="column">
-        Curent number
+        Current number
         <ul class="current-value-list">
           <li class="midle">1</li>
           <li class="midle">2</li>

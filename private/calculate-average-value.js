@@ -1,5 +1,7 @@
 module.exports = { calculateAverageValue }
 
-function calculateAverageValue(currentNumber) {
-  // here should be a function declaration
+
+function calculateAverageValue(currentNumber, previousNumber) {
+  if (!previousNumber || previousNumber === '') return currentNumber
+  return (previousNumber + currentNumber) / 2
 }

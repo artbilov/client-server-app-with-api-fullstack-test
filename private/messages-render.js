@@ -1,5 +1,4 @@
 module.exports = { messagesRender }
-const {setBgColor} = require('./set-bg-color.js')
 
 function messagesRender(arr) {
   return arr.reduce((acum, el) => {
@@ -11,6 +10,6 @@ function messagesRender(arr) {
       </div>
       <hr>
       <p class="text">${el.text}</p>
-    </div>`    
+    </div>`
   }, '')
 }
