@@ -79,7 +79,7 @@ async function handleRequest(request, response) {
     if (endpoint === 'get-numbers') {
       response.end(fs.readFileSync('./private/data/numbers-depot.json'))
     } else if (endpoint === 'average' && method === 'POST') {
-      const previousNumber = numbersArr.at(-1)?.currentNumber || ''
+      const previousNumber = numbersArr.at(-1) === undefined ? '' : +numbersArr.at(-1)?.currentNumber 
       const currentNumber = JSON.parse(body).currentNumber
       const averageValue = calculateAverageValue(currentNumber, previousNumber)
       const result = { previousNumber, currentNumber, averageValue }

@@ -10,9 +10,14 @@ getNumbersTable().then(renderNumbersTable)
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault()
-  const currentNumber = handleInputNumber(inputNumber.value)
-  await requestAverageValue(currentNumber)
-
+  if (inputNumber.value == '0') {
+    const currentNumber = handleInputNumber(0)
+    await requestAverageValue(currentNumber)
+  } else {
+    const currentNumber = handleInputNumber(+inputNumber.value)
+    await requestAverageValue(currentNumber)
+  }
+  form.reset()
 })
 
 // функции
@@ -37,9 +42,14 @@ async function requestAverageValue(currentNumber) {
   if (response.ok) {
     console.log(response)
     const { previousNumber, currentNumber, averageValue } = await response.json()
-    previousNumColumn.insertAdjacentHTML('afterbegin', `<li class="number">${previousNumber}</li>`)
+    if (previousNumber === '') {
+      previousNumColumn.insertAdjacentHTML('afterbegin', `<li class="number">*</li>`)
+    } else {
+      previousNumColumn.insertAdjacentHTML('afterbegin', `<li class="number">${previousNumber}</li>`)
+    }
     currentNumColumn.insertAdjacentHTML('afterbegin', `<li class="number">${currentNumber}</li>`)
     averageValueColumn.insertAdjacentHTML('afterbegin', `<li class="number">${averageValue}</li>`)
+    form
   }
 }
 
@@ -61,7 +71,7 @@ async function getNumbersTable() {
 
 function renderNumbersTable(arr) {
   previousNumColumn.innerHTML = arr.reduce((acum, el) => {
-    return `<li class="number">${el.previousNumber || '*'}</li>` + acum
+    return `<li class="number">${el.previousNumber === '' ? '*' : +el.previousNumber}</li>` + acum
   }, '')
   currentNumColumn.innerHTML = arr.reduce((acum, el) => {
     return `<li class="number">${el.currentNumber}</li>` + acum
