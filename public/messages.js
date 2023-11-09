@@ -5,7 +5,7 @@ btn.addEventListener('click', async () => {
   const text = document.getElementsByClassName('add-text')[0].value
   const date = new Date()
   const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  const time = date.getDate() + ' ' + monthes[date.getMonth()] + ' ' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes()
+  const time = date.getDate() + ' ' + monthes[date.getMonth()] + ' ' + date.getFullYear() + ' ' + date.getHours() + ':' + (date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes())
   const url = '/messages.html'
   const payload = { author, text, background : setBgColor(), time }
   const options = {
@@ -18,5 +18,16 @@ btn.addEventListener('click', async () => {
 })
 
 function setBgColor() {
-  return ['pink', 'lightblue', 'lightseagreen', 'lightcyan', 'lightsalmon', 'lightcoral', 'lightgray', 'plum', 'palevioletred', 'violet'][Math.floor(Math.random() * 10)]
+  return [
+    "aliceblue",
+    "lavender",
+    "mintcream",
+    "lightcyan",
+    "powderblue",
+    "cornsilk",
+    "honeydew",
+    "lightyellow",
+    "lavenderblush",
+    "floralwhite"
+  ][Math.floor(Math.random() * 10)]
 }

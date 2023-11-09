@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "previousNumber": "",
+    "currentNumber": 0.1,
+    "averageValue": 0.1
+  },
+  {
+    "previousNumber": 0.1,
+    "currentNumber": 0.2,
+    "averageValue": 0.15
+  },
+  {
+    "previousNumber": 0.2,
+    "currentNumber": 0.3,
+    "averageValue": 0.25
+  },
+  {
+    "previousNumber": 0.3,
+    "currentNumber": 0,
+    "averageValue": 0.15
+  },
+  {
+    "previousNumber": 0,
+    "currentNumber": 0,
+    "averageValue": 0
+  },
+  {
+    "previousNumber": 0,
+    "currentNumber": 0.2,
+    "averageValue": 0.1
+  },
+  {
+    "previousNumber": 0.2,
+    "currentNumber": 0.3,
+    "averageValue": 0.25
+  },
+  {
+    "previousNumber": 0.3,
+    "currentNumber": 0.1,
+    "averageValue": 0.2
+  },
+  {
+    "previousNumber": 0.1,
+    "currentNumber": 0.1,
+    "averageValue": 0.1
+  },
+  {
+    "previousNumber": 0.1,
+    "currentNumber": 0.2,
+    "averageValue": 0.15
+  }
+]

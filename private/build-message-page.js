@@ -14,11 +14,11 @@ function buildMessagePage() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>${fs.readFileSync('./public/messages.css', 'utf-8')}</style>
   
-  <title></title>
+  <title>Message board</title>
 </head>
 
 <body>
-  <h1>Message's board</h1>
+  <h1>Message board</h1>
   <main class="main">
     <form action="javascript:" class="add-message">
       <label><span>Author is : </span><input type="text" class="add-author"></label>

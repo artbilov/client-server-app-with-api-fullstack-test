@@ -2,7 +2,7 @@ module.exports = { messagesRender }
 
 function messagesRender(arr) {
   return arr.reduce((acum, el) => {
-    return acum + `
+    return `
     <div class="message" style="background: ${el.background};">
       <div class="author">
         <p class="author-name">${el.author}</p>
@@ -10,6 +10,6 @@ function messagesRender(arr) {
       </div>
       <hr>
       <p class="text">${el.text}</p>
-    </div>`
+    </div>` + acum
   }, '')
 }

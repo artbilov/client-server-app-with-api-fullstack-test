@@ -1,11 +1,12 @@
 const { createServer } = require('http')
 const fs = require('fs')
+
 const server = createServer()
 const port = 1234
-const { buildMessagePage } = require('./build-message-page.js')
 const { mimeTypes } = require('./mimeTypes.js')
 const { handleAddMessage } = require('./add-message.js')
 const { calculateAverageValue } = require('./calculate-average-value.js')
+const { buildMessagePage } = require('./build-message-page.js')
 
 server.listen(port, () => {
   console.log('Server started at http://localhost:' + port)
@@ -24,18 +25,6 @@ function readNumbers() {
     })
   })
 }
-
-// // reading previous numbers from file onload of the page
-// const previousNumbers = []
-// readPreviousNumbers()
-// function readPreviousNumbers() {
-//   fs.readFile('./private/data/numbers-depot.json', 'utf-8', (err, data) => {
-//     if (err) return console.log(err)
-//     JSON.parse(data).forEach(iteration => {
-//       previousNumbers.push(iteration.previousNumber)
-//     })
-//   })
-// }
 
 async function handleRequest(request, response) {
   const body = await getBody(request)
@@ -72,14 +61,19 @@ async function handleRequest(request, response) {
       response.setHeader('Content-Type', mimeTypes[ext])
       response.end(buildMessagePage())
     } else if (method === 'POST') {
-      handleAddMessage(request, response)
+      handleAddMessage(body, response)
+      
+    } else {
+      response.statusCode = 404
+      response.setHeader('Content-Type', mimeTypes['html'])
+      response.end(fs.readFileSync('./public/not-found.html'))
     }
   } else if (url.startsWith('/api/')) {
     const endpoint = url.split('/api/')[1]
     if (endpoint === 'get-numbers') {
       response.end(fs.readFileSync('./private/data/numbers-depot.json'))
     } else if (endpoint === 'average' && method === 'POST') {
-      const previousNumber = numbersArr.at(-1) === undefined ? '' : +numbersArr.at(-1)?.currentNumber 
+      const previousNumber = numbersArr.at(-1) === undefined ? '' : +numbersArr.at(-1)?.currentNumber
       const currentNumber = JSON.parse(body).currentNumber
       const averageValue = calculateAverageValue(currentNumber, previousNumber)
       const result = { previousNumber, currentNumber, averageValue }
